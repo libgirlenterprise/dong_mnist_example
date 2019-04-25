@@ -3,10 +3,13 @@
 
 from setuptools import setup
 
-setup(name='PROJECT_NAME',
+setup(name='tabemasu',
       version='0.1',
       description='none',
-      license='MIT',
-      packages=['PROJECT_NAME'],
+      license='apache2',
+      packages=['tabemasu'],
       zip_safe=False,
+      entry_points = {
+        'console_scripts': ['tabemasu=tabemasu:main'],
+      },
     )
