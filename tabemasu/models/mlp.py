@@ -1,3 +1,6 @@
+import tensorflow
+
+
 hidden_units=512
 dropout=0.2
 
