@@ -1,13 +1,16 @@
 # For easiness of sharing a dong project via pypi
 # dong should make a setup.py template for its users
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='tabemasu',
       version='0.1',
       description='none',
       license='apache2',
-      packages=['tabemasu'],
+      install_requires=[
+          'tensorflow',
+      ],
+      packages=find_packages(),
       zip_safe=False,
       entry_points = {
         'console_scripts': ['tabemasu=tabemasu:main'],
