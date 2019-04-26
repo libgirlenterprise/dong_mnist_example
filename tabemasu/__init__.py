@@ -1,19 +1,31 @@
 
-
+import argparse
+import sys
 import json
 import os
 import tabemasu.data
 import tabemasu.models.mlp
 import tabemasu.save_load
 import tabemasu.train
-
+import tabemasu.endpoint
 
 def main():
-    with open('tabemasu/train.json') as f:
-        model, score = tabemasu.train.train(model=tabemasu.models.mlp.new(tabemasu.data.get_data_params()),
-                                            train_data=tabemasu.data.get_train_data(),
-                                            eval_data=tabemasu.data.get_eval_data(),
-                                            config=json.load(f))
-        os.makedirs("/tmp/save_dir", exist_ok=True)
-        tabemasu.save_load.save(model, '/tmp/save_dir/')
-        print(score)
+    
+    args = sys.argv[1:]
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--test_predict', default=False, action='store_true')
+    args, _ = parser.parse_known_args(args)
+
+    if args.test_predict:
+        print(tabemasu.endpoint.respond_to_request(model=tabemasu.save_load.load('/tmp/save_dir/'),
+                                                   request_body_json=json.dumps(tabemasu.data.get_eval_data().x[3:5].tolist())))
+    else:
+        with open('tabemasu/train.json') as f:
+            model, score = tabemasu.train.train(model=tabemasu.models.mlp.new(tabemasu.data.get_data_params()),
+                                                train_data=tabemasu.data.get_train_data(),
+                                                eval_data=tabemasu.data.get_eval_data(),
+                                                config=json.load(f))
+            os.makedirs("/tmp/save_dir", exist_ok=True)
+            tabemasu.save_load.save(model, '/tmp/save_dir/')
+            print(score)
+        
