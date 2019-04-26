@@ -1,0 +1,24 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "e2328ee5f47fcb415dccb985bba24becaf43db0454d88c6345db058330c84647"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "tabemasu": {
+            "path": "."
+        }
+    },
+    "develop": {}
+}
