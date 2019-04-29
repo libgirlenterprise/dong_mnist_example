@@ -7,6 +7,8 @@ $ pipenv install
 ```
 
 ## Usage
+### Training Output Location
+- Environment variable ```MODEL_SAVE_DIR``` will be the training output directory
 ### Training
 Under the project folder
 ```sh
