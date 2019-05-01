@@ -8,6 +8,7 @@ import tabemasu.models.mlp
 import tabemasu.save_load
 import tabemasu.train
 import tabemasu.endpoint
+import pkgutil
 
 def main():
     
@@ -20,12 +21,11 @@ def main():
         print(tabemasu.endpoint.respond_to_request(model=tabemasu.save_load.load(os.environ.get('MODEL_SAVE_DIR')),
                                                    request_body_json=json.dumps(tabemasu.data.get_eval_data().x[3:5].tolist())))
     else:
-        with open('tabemasu/train.json') as f:
-            model, score = tabemasu.train.train(model=tabemasu.models.mlp.new(tabemasu.data.get_data_params()),
-                                                train_data=tabemasu.data.get_train_data(),
-                                                eval_data=tabemasu.data.get_eval_data(),
-                                                config=json.load(f))
-            os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
-            tabemasu.save_load.save(model, os.environ.get('MODEL_SAVE_DIR') + '/')
-            print(score)
+        model, score = tabemasu.train.train(model=tabemasu.models.mlp.new(tabemasu.data.get_data_params()),
+                                            train_data=tabemasu.data.get_train_data(),
+                                            eval_data=tabemasu.data.get_eval_data(),
+                                            config=json.loads(pkgutil.get_data('tabemasu', 'train.json')))
+        os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
+        tabemasu.save_load.save(model, os.environ.get('MODEL_SAVE_DIR') + '/')
+        print(score)
         
