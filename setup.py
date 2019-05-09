@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tabemasu',
-      version='0.1',
+      version='0.2',
       description='none',
       license='apache2',
       install_requires=[
