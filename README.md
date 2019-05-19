@@ -10,11 +10,11 @@ $ pip install .
 - Environment variable ```MODEL_SAVE_DIR``` will be the training output directory
 ### Command
 ```shell
-USAGE: tabemasu [REQUIRED OPTIONS]
+USAGE: tabemasu [OPTIONS]
 
-REQUIRED OPTIONS:
+OPTIONS:
 
-   --data-fetch: the module handling data fetching 
+   --data-fetch: the module handling data fetching
 
    --model-set: the module indicating a model set
    
@@ -24,5 +24,10 @@ REQUIRED OPTIONS:
 ```
 ### Sample Command
 ```shell
-$ tabemasu --data-fetch dalian --model-set mlp --save-load laborday --train taroko
+$ tabemasu 
+```
+Which uses default modules.
+And here is the equivalent command
+```shell
+$ tabemasu --data-fetch default --model-set default --save-load default --train default
 ```

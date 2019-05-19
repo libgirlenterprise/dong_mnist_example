@@ -12,10 +12,10 @@ def main():
     args = sys.argv[1:]
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--data-fetch', action='store', type=str)
-    parser.add_argument('--model-set', action='store', type=str)
-    parser.add_argument('--save-load', action='store', type=str)
-    parser.add_argument('--train', action='store', type=str)
+    parser.add_argument('--data-fetch', action='store', type=str, default='default')
+    parser.add_argument('--model-set', action='store', type=str, default='default')
+    parser.add_argument('--save-load', action='store', type=str, default='default')
+    parser.add_argument('--train', action='store', type=str, default='default')
     
     args, _ = parser.parse_known_args(args)
 
@@ -30,5 +30,5 @@ def main():
                                       config=json.loads(pkgutil.get_data(project_name, 'trains/' + args.train + '.json')))
     os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
     save_load_module.save(model, os.environ.get('MODEL_SAVE_DIR') + '/')
-    print(score)
+    print('Evaluation Accuracy: ' + str(score))
     
