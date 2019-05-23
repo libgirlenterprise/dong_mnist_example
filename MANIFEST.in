@@ -1,1 +1,1 @@
-recursive-include tabemasu *.ini *.json *.py
+recursive-include dong_mnist_example *.ini *.json *.py

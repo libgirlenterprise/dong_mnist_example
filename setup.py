@@ -3,7 +3,7 @@
 
 from setuptools import setup, find_packages
 
-setup(name='tabemasu',
+setup(name='dong_mnist_example',
       version='0.2',
       description='none',
       license='apache2',
@@ -14,6 +14,6 @@ setup(name='tabemasu',
       include_package_data=True,
       zip_safe=False,
       entry_points = {
-        'console_scripts': ['tabemasu=tabemasu:main'],
+        'console_scripts': ['dong_mnist_example=dong_mnist_example:main'],
       },
     )

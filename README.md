@@ -1,4 +1,4 @@
-# tabemasu : a dong train exec sample project
+# dong_mnist_example : a dong train exec sample project
 ## Installation
 Under the project folder
 ```sh
@@ -10,7 +10,7 @@ $ pip install .
 - Environment variable ```MODEL_SAVE_DIR``` will be the training output directory
 ### Command
 ```shell
-USAGE: tabemasu [OPTIONS]
+USAGE: dong_mnist_example [OPTIONS]
 
 OPTIONS:
 
@@ -24,10 +24,10 @@ OPTIONS:
 ```
 ### Sample Command
 ```shell
-$ tabemasu 
+$ dong_mnist_example 
 ```
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ tabemasu --data-fetch default --model-set default --save-load default --train default
+$ dong_mnist_example --data-fetch default --model-set default --save-load default --train default
 ```
