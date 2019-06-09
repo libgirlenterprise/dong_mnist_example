@@ -5,23 +5,26 @@ import collections
 import numpy
 import tensorflow
 
+class DefaultData(dong.framework.data):
 
-DataPair = collections.namedtuple('DataPair', ['x', 'y'])
-DataParams = collections.namedtuple('Params', ['image_size', 'num_labels'])
-                                
-mnist = tensorflow.keras.datasets.mnist
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-
-x_train, x_test = x_train / 255.0, x_test / 255.0
-
-def get_train_data():
-    return DataPair(x_train, y_train)
-
-def get_eval_data():
-    return DataPair(x_test, y_test)
-
-def get_data_params():
+    DataPair = collections.namedtuple('DataPair', ['x', 'y'])
+    DataParams = collections.namedtuple('Params', ['image_size', 'num_labels'])
     
-    image_size = x_train.shape[1]
-    num_labels = len(numpy.unique(y_train))
-    return DataParams(image_size, num_labels)
+    def __init__(self, config=None):
+                                
+        mnist = tensorflow.keras.datasets.mnist
+        (x_train, self._y_train), (x_test, self._y_test) = mnist.load_data()
+
+        self._x_train, self._x_test = x_train / 255.0, x_test / 255.0
+
+    def get_train_data():
+        return DataPair(self._x_train, self._y_train)
+
+    def get_eval_data():
+        return DataPair(self._x_test, self._y_test)
+
+    def get_data_params():
+    
+        image_size = self._x_train.shape[1]
+        num_labels = len(numpy.unique(self._y_train))
+        return DataParams(image_size, num_labels)
