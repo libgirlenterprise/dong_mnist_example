@@ -1,3 +1,5 @@
 
 def commit(self, save_dir):
-    self.save(save_dir + 'my_model.h5')
+
+    export_path = save_dir + 'my_model.h5'
+    self.save(export_path)
