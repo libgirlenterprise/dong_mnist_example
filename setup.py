@@ -8,7 +8,7 @@ setup(name='dong_mnist_example',
       description='none',
       license='apache2',
       install_requires=[
-          'tensorflow',
+          'tensorflow==1.13.1',
           'dong>=0.2',
       ],
       packages=find_packages(),
