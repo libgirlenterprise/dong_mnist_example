@@ -12,4 +12,4 @@ class DefaultModelInit(tensorflow.keras.models.Sequential):
             tensorflow.keras.layers.Dense(self._hidden_units, activation=tensorflow.nn.relu),
             tensorflow.keras.layers.Dropout(self._dropout),
             tensorflow.keras.layers.Dense(data_params.num_labels, activation=tensorflow.nn.softmax)
-        ]
+        ])

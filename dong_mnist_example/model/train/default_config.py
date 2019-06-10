@@ -2,9 +2,9 @@ from collections import OrderedDict
 
 def get_train_config():
     return OrderedDict([("self.compile", (":optimizer",
-                                          "adam",
-                                          ":loss",
-                                          "sparse_categorical_crossentropy",
-                                          ":metrics",
-                                          [ "accuracy" ])),
-                        ("self.fit", ("train_data.x", "train_data.y", ":epochs", 5))])
+                                "adam",
+                                ":loss",
+                                "sparse_categorical_crossentropy",
+                                ":metrics",
+                                [ "accuracy" ])),
+                        ("self.fit", (":epochs", 5))])

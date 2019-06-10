@@ -31,7 +31,7 @@ def main():
     data = Data()
     Model = getattr(model_module, args.model_class)
     model = Model(data_params=data.get_data_params())
-    score = model.train(data=data(),
+    score = model.train(data=data,
                         config=train_config)
         
     os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
