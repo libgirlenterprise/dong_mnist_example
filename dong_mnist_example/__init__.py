@@ -35,5 +35,5 @@ def main():
                         config=train_config)
         
     os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
-    model.commit(os.environ.get('MODEL_SAVE_DIR') + '/')
+    model.write(os.environ.get('MODEL_SAVE_DIR') + '/')
     print('Evaluation Accuracy: ' + str(score))
