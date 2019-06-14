@@ -6,7 +6,7 @@ class DefaultModelLoad(DefaultModelInit):
 
     from dong_mnist_example.model.serializer.default import read
     
-    def __init__(self, config={}, save_dir=None):
+    def __init__(self, config={}, data_params=None, save_dir=None):
 
         data = DefaultData()
         super().__init__(config,
