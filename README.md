@@ -1,4 +1,4 @@
-# dong_mnist_example : a dong train/tune exec sample project
+# dong_mnist_example : a dong train exec sample project
 ## Installation
 Under the project folder
 ```sh
@@ -14,27 +14,27 @@ USAGE: dong_mnist_example [OPTIONS]
 
 OPTIONS:
 
-   --data-fetch: the module handling data fetching
+    --data-module TEXT
+    --data-class TEXT
+    --model-module TEXT
+    --model-class TEXT
+    --train-config-module TEXT
+    --train-config-func TEXT
+    
+    --do-tune: flag for applying hyperparameter tuning or not
+    --tune-module TEXT
+    --tune-class TEXT
 
-   --model-set: the module indicating a model set
-   
-   --save-load: the module handling model serialization/deserialization
-   
-   --train: the module of training program
-   
-   --do-tune: flag for applying hyperparameter tuning or not
-   
-   --tune: the module of tuning program
 ```
 ### Sample Command
 #### Train
 ```shell
-$ dong_mnist_example 
+$ dong_mnist_example --train-config-module default_config --train-config-func get_train_config 
 ```
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ dong_mnist_example --data-fetch default --model-set default --save-load default --train default
+$ dong_mnist_example --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel --train-config-module default_config --train-config-func get_train_config 
 ```
 #### Tune
 ```shell
@@ -43,6 +43,5 @@ $ dong_mnist_example --do-tune
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ dong_mnist_example --do-tune --data-fetch default --model-set default --save-load default --train default --tune default
+$ dong_mnist_example --do-tune --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel
 ```
-
