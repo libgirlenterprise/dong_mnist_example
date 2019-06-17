@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(name='dong_mnist_example',
-      version='0.3',
+      version='0.4',
       description='none',
       license='apache2',
       install_requires=[
