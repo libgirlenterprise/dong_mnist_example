@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-def get_train_config():
+def get_config():
     return OrderedDict([("self.compile", (":optimizer",
                                           "adam",
                                           ":loss",

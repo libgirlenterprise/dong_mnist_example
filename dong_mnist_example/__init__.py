@@ -13,40 +13,41 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--data-module', action='store', type=str, default='default')
-    parser.add_argument('--data-class', action='store', type=str, default='DefaultData')
+    parser.add_argument('--data-class', action='store', type=str)
     parser.add_argument('--model-module', action='store', type=str, default='default')
-    parser.add_argument('--model-class', action='store', type=str, default='DefaultTrainModel')
-    parser.add_argument('--tune-module', action='store', type=str, default='default')
-    parser.add_argument('--tune-class', action='store', type=str, default='DefaultTune')
+    parser.add_argument('--model-class', action='store', type=str)
+    parser.add_argument('--config-module', action='store', type=str)
+    parser.add_argument('--config-func', action='store', type=str, default='get_config')
     parser.add_argument('--do-tune', action='store_true')
-    parser.add_argument('--train-config-module', action='store', type=str)
-    parser.add_argument('--train-config-func', action='store', type=str)
+    parser.add_argument('--tune-module', action='store', type=str, default='default')
+    parser.add_argument('--tune-class', action='store', type=str)
+
+    def get_module_class(module_type_str):
+        module_name = getattr(args, module_type_str + '_module')
+        module = importlib.import_module(project_name + '.' + module_type_str +'.' + module_name)
+        module_class_name =  getattr(args, module_type_str + '_class')
+        if module_class_name is None:
+            module_class_name = module_name[0].upper() + module_name[1:] + module_type_str[0].upper() + module_type_str[1:]
+        return getattr(module, module_class_name)
     
     args, _ = parser.parse_known_args(args)
     
-    model_module = importlib.import_module(project_name + '.model.' + args.model_module)
-    data_module = importlib.import_module(project_name + '.data.' + args.data_module)
-    Data = getattr(data_module,
-                   args.data_class)
-    Model = getattr(model_module, args.model_class)
+    Data = get_module_class('data')
+    Model = get_module_class('model')
 
     config_list = []
     model_score_pair_list = []
-
-    def get_sec(tup):
-        return tup[1]
     
     if args.do_tune:
-        tune_module = importlib.import_module(project_name + '.tune.' + args.tune_module)
-        Tune = getattr(tune_module, args.tune_class)
+        Tune = get_module_class('tune')
         tune = Tune()
         config_list = tune.get_hyper_parameter_config_list()
     else:
-        train_config = None
-        if args.train_config_module is not None and args.train_config_func is not None:
-            train_config_module = importlib.import_module(project_name + '.model.train.' + args.train_config_module)
-            train_config = getattr(train_config_module, args.train_config_func)()
-        config_list.append(HyperParameterConfig(train_config))
+        config = None
+        if args.config_module is not None:
+            config_module = importlib.import_module(project_name + '.config.' + args.config_module)
+            config = getattr(config_module, args.config_func)()
+        config_list.append(HyperParameterConfig(config))
 
     for hyper_parameter_config in config_list:
         data = Data(config=hyper_parameter_config.get_config())
@@ -55,7 +56,7 @@ def main():
         score = model.train(data=data,
                             config=hyper_parameter_config.get_config())
         model_score_pair_list.append((model, score))
-        model_score_pair = max(model_score_pair_list, key=get_sec)
+        model_score_pair = max(model_score_pair_list, key=lambda tup: tup[1])
         (model, score) = model_score_pair
         
     os.makedirs(os.environ.get('MODEL_SAVE_DIR'), exist_ok=True)
