@@ -18,8 +18,8 @@ OPTIONS:
     --data-class TEXT
     --model-module TEXT
     --model-class TEXT
-    --train-config-module TEXT
-    --train-config-func TEXT
+    --config-module TEXT
+    --config-func TEXT
     
     --do-tune: flag for applying hyperparameter tuning or not
     --tune-module TEXT
@@ -29,12 +29,12 @@ OPTIONS:
 ### Sample Command
 #### Train
 ```shell
-$ dong_mnist_example --train-config-module default_config --train-config-func get_train_config 
+$ dong_mnist_example --config-module default 
 ```
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ dong_mnist_example --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel --train-config-module default_config --train-config-func get_train_config 
+$ dong_mnist_example --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel --config-module default_config --config-func get_config 
 ```
 #### Tune
 ```shell
