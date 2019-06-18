@@ -27,7 +27,7 @@ def main():
         module = importlib.import_module(project_name + '.' + module_type_str +'.' + module_name)
         module_class_name =  getattr(args, module_type_str + '_class')
         if module_class_name is None:
-            module_class_name = module_name[0].upper() + module_name[1:] + module_type_str[0].upper() + module_type_str[1:]
+            module_class_name = module_name.title() + module_type_str.title()
         return getattr(module, module_class_name)
     
     args, _ = parser.parse_known_args(args)
