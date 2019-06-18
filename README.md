@@ -34,7 +34,7 @@ $ dong_mnist_example --config-module default
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ dong_mnist_example --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel --config-module default_config --config-func get_config 
+$ dong_mnist_example --data-module default --data-class DefaultData --model-module default --model-class DefaultModel --config-module default --config-func get_config 
 ```
 #### Tune
 ```shell
@@ -43,5 +43,5 @@ $ dong_mnist_example --do-tune
 Which uses default modules.
 And here is the equivalent command
 ```shell
-$ dong_mnist_example --do-tune --data-module default --data-class DefaultData --model-module default --model-class DefaultTrainModel
+$ dong_mnist_example --do-tune --data-module default --data-class DefaultData --model-module default --model-class DefaultModel
 ```
