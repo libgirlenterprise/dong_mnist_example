@@ -47,8 +47,9 @@ $ dong_mnist_example --do-tune --data-module default --data-class DefaultData --
 ```
 ## Author
 Team Libgirl(team@libgirl.com)
-[dong.libgirl.com](http://dong.libgirl.com)
-[www.libgirl.com](http://www.libgirl.com)
+
+- [dong.libgirl.com](http://dong.libgirl.com)
+- [www.libgirl.com](http://www.libgirl.com)
 
 ## License
 Licensed under the Apache License 2.0 License.
