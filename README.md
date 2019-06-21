@@ -45,3 +45,8 @@ And here is the equivalent command
 ```shell
 $ dong_mnist_example --do-tune --data-module default --data-class DefaultData --model-module default --model-class DefaultModel
 ```
+### Author
+Team Libgirl(team@libgirl.com)
+
+### License
+Licensed under the Apache License 2.0 License.
