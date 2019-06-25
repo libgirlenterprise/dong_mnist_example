@@ -1,3 +1,5 @@
+![drawing](dong_logo.png)
+
 # dong_mnist_example : a dong train exec sample project
 ## Installation
 Under the project folder
