@@ -6,6 +6,7 @@ from setuptools import setup, find_packages
 setup(name='dong_mnist_example',
       version='0.4',
       description='none',
+      url='https://github.com/libgirlenterprise/dong_mnist_example',
       license='apache2',
       install_requires=[
           'tensorflow==1.13.1',
