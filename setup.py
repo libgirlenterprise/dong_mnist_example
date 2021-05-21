@@ -9,7 +9,7 @@ setup(name='dong_mnist_example',
       url='https://github.com/libgirlenterprise/dong_mnist_example',
       license='apache2',
       install_requires=[
-          'tensorflow==1.13.1',
+          'tensorflow==2.5.0',
           'dong>=0.2',
       ],
       packages=find_packages(),
